@@ -54,7 +54,7 @@ function setup() {
     slider = createSlider(50, 200, 170, 10);
     w = window.innerWidth / ledX;
     h = (window.innerHeight - 50) / ledY;
-    slider.position(window.innerWidth / 2 - slider.width / 2, Math.floor(window.innerHeight - 40 - slider.height / 2));
+    slider.position(window.innerWidth / 2 - slider.width / 2, Math.floor(window.innerHeight - 43 - slider.height / 2));
 
     window.addEventListener("visibilitychange", (event) => {
         visible = !visible;
@@ -70,16 +70,19 @@ function setup() {
 }
 
 function draw() {
+    console.log(slider)
     if (turn != 0) {
         background(0);
         fill(255);
         text('BUSY', window.innerWidth / 2, window.innerHeight / 2);
         first = true;
+        slider.position(window.innerWidth / 2 - slider.width / 2, Math.floor(-100));
 
     } else {
         if (first) {
             fill(0);
             rect(window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+            slider.position(window.innerWidth / 2 - slider.width / 2, Math.floor(window.innerHeight - 42 - slider.height / 2));
             first = false;
         }
         w = window.innerWidth / ledX;
