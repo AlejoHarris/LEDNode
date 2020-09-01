@@ -1,6 +1,6 @@
 {
     "remotePath": "/home/pi/LED",
-    "host": "192.168.1.100",
+    "host": "192.168.1.123",
     "username": "pi",
     "password": "FPStudio2020",
     "port": 22,
