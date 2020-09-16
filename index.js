@@ -1,5 +1,5 @@
 const ws281x = require('@bartando/rpi-ws281x-neopixel');
-const NUM_LEDS = 72;
+const NUM_LEDS = 1584;
 
 var express = require('express');
 var app = express();
@@ -10,14 +10,9 @@ ws281x.init({ count: NUM_LEDS, stripType: ws281x.WS2811_STRIP_GRB });
 
 function display(data) {
     for (let i = 0; i < NUM_LEDS; i++) {
-        ws281x.setPixelColor(data[i].id, { r: data[i].r, g: data[i].g, b: data[i].b });
+        ws281x.setPixelColor(data[i].id, { r: data[i].r * 100 / 255, g: data[i].g * 100 / 255, b: data[i].b * 100 / 255 });
     }
     ws281x.show();
-    //console.log(data);
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function listen() {
@@ -46,8 +41,8 @@ io.sockets.on('connection', (socket) => {
     io.to(socket.id).emit('turn', clientIndex);
 
     socket.on('data', (data) => {
-        //console.log(data)
         display(data);
+        //console.log(data);
     });
 
     socket.on('disconnect', () => {
